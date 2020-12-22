@@ -20,9 +20,15 @@ func _ready():
 func throw(direction: Vector3):
 	var power = rng.randf_range(5, 10)
 	var rot = rng.randf_range(-0.05, 0.05)
-	rotate(Vector3(rng.randi_range(0, 1), rng.randi_range(0, 1), rng.randi_range(0, 1)), rng.randf_range(-90, 90))
-	apply_impulse(Vector3(0.00, -0.01, rot), direction * power)
-	pass
+	match rng.randi_range(1, 3):
+		1:
+			rotate(Vector3(1, 0, 0), rng.randf_range(-90, 90))
+		2:
+			rotate(Vector3(0, 1, 0), rng.randf_range(-90, 90))
+		3:
+			rotate(Vector3(0, 0, 1), rng.randf_range(-90, 90))
+	apply_impulse(Vector3(0.0, 0.0, rot), direction * power)
+	apply_impulse(Vector3(0.0, 0.5, 0), direction * 2)
 
 
 func get_pointed_number():
