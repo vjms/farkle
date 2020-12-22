@@ -19,3 +19,4 @@ shape = SubResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
+[connection signal="input_event" from="." to="." method="_on_Dice_input_event"]

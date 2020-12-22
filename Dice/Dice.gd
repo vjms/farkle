@@ -3,32 +3,33 @@ extends RigidBody
 var gravity = Vector3(0.0, -98.1, 0.0)
 var rng = RandomNumberGenerator.new()
 
-#const face1 = Vector3(0, 10, 0)
-#const face2 = Vector3(10, 0, 0)
-#const face3 = Vector3(0, 0, 10)
-#const face4 = Vector3(0, 0, -10)
-#const face5 = Vector3(-10, 0, 0)
-#const face6 = Vector3(0, -10, 0)
+var timer = Timer.new()
+var thrown = false
 
 
 func _ready():
+	timer.connect("timeout", self, "_on_physics_stop_timeout")
+	add_child(timer)
 	rng.randomize()
-	mass = 0.1
+	set_mass(0.1)
 	throw(Vector3(-1, 0, 0))
 
 
 func throw(direction: Vector3):
-	var power = rng.randf_range(5, 10)
-	var rot = rng.randf_range(-0.05, 0.05)
-	match rng.randi_range(1, 3):
+	thrown = true
+	set_linear_velocity(Vector3())
+	set_angular_velocity(Vector3())
+	var power = rng.randf_range(5, 7)
+	var rot = rng.randf_range(-0.03, 0.03)
+	match rng.randi_range(1,3):
 		1:
-			rotate(Vector3(1, 0, 0), rng.randf_range(-90, 90))
+			rotate(Vector3(1, 0, 0), rng.randf_range(PI / 2.0, 2.0 * PI))
 		2:
-			rotate(Vector3(0, 1, 0), rng.randf_range(-90, 90))
+			rotate(Vector3(0, 1, 0), rng.randf_range(PI / 2.0, 2.0 * PI))
 		3:
-			rotate(Vector3(0, 0, 1), rng.randf_range(-90, 90))
+			rotate(Vector3(0, 0, 1), rng.randf_range(PI / 2.0, 2.0 * PI))
 	apply_impulse(Vector3(0.0, 0.0, rot), direction * power)
-	apply_impulse(Vector3(0.0, 0.5, 0), direction * 2)
+	apply_impulse(Vector3(0.0, -1, 0), direction * 1)
 
 
 func get_pointed_number():
@@ -58,5 +59,22 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	add_central_force(gravity * delta)
+	if thrown:
+		add_central_force(gravity * delta)
+		if get_linear_velocity().length() < 0.01:
+			if timer.is_stopped():
+				timer.set_one_shot(true)
+				timer.start(0.5)
+		else:
+			timer.stop()
+
+
+func _on_physics_stop_timeout():
+	thrown = false
 	print(get_pointed_number())
+
+
+func _on_Dice_input_event(camera, event, click_position, click_normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == BUTTON_LEFT:
+			print(self)
