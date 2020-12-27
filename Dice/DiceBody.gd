@@ -4,7 +4,17 @@ var gravity = Vector3(0.0, -98.1, 0.0)
 var rng = RandomNumberGenerator.new()
 
 var timer = Timer.new()
-var resting = true
+var _resting = false setget _set_resting, is_resting
+
+
+func _set_resting(new_val):
+	_resting = new_val
+	Events.emit_signal("dice_resting", self)
+
+
+func is_resting():
+	return _resting
+
 
 func _ready():
 	timer.connect("timeout", self, "_on_physics_stop_timeout")
@@ -14,14 +24,13 @@ func _ready():
 	throw(Vector3(-1, 0, 0))
 
 
-
 func throw(direction: Vector3):
-	resting = false
+	_set_resting(false)
 	set_linear_velocity(Vector3())
 	set_angular_velocity(Vector3())
 	var power = rng.randf_range(5, 7)
 	var rot = rng.randf_range(-0.03, 0.03)
-	match rng.randi_range(1,3):
+	match rng.randi_range(1, 3):
 		1:
 			rotate(Vector3(1, 0, 0), rng.randf_range(PI / 2.0, 2.0 * PI))
 		2:
@@ -54,24 +63,20 @@ func minindex(array: Array):
 	return c
 
 
-func _process(delta):
-	pass
-
-
 func _physics_process(delta):
-	if not resting:
+	if not _resting:
 		add_central_force(gravity * delta)
-		if get_linear_velocity().length() < 0.01:
+		if get_linear_velocity().length() < 0.1:
 			if timer.is_stopped():
 				timer.set_one_shot(true)
-				timer.start(0.5)
+				timer.start(0.4)
 		else:
 			timer.stop()
 
 
 func _on_physics_stop_timeout():
-	resting = true
-	print(get_pointed_number())
+	_set_resting(true)
+	#print(get_pointed_number())
 
 
 func _on_Dice_input_event(camera, event, click_position, click_normal, shape_idx):

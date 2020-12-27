@@ -15,7 +15,7 @@ albedo_color = Color( 0.341176, 0.219608, 0.0666667, 1 )
 script = ExtResource( 2 )
 
 [node name="Wall1" type="MeshInstance" parent="."]
-transform = Transform( 34.4599, 0, 0, 0, 1, 0, 0, 0, 34.4599, 0, 0, 0 )
+transform = Transform( 17.7868, 0, 0, 0, 1, 0, 0, 0, 17.7868, 0.195181, 0, -0.0758179 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
@@ -25,72 +25,76 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Wall2" type="MeshInstance" parent="."]
-transform = Transform( -5.61424e-06, -1, 0, 34.4599, -1.62921e-07, 0, 0, 0, 34.4599, -34.1039, 25.3595, 0 )
+transform = Transform( -2.89784e-06, -0.51616, 0, 1.9145, -9.05144e-09, 0, 0, 0, 17.7868, -17.4079, 2.15476, -0.0758179 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="Wall2"]
+transform = Transform( 43.448, -2.00965e-07, 0, -0.000238642, 0.941391, 0, 0, 0, 0.941391, 0, -2.02244, -0.000266514 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall2/StaticBody"]
 shape = SubResource( 3 )
 
 [node name="Wall5" type="MeshInstance" parent="."]
-transform = Transform( -5.61424e-06, -1, 0, 34.4599, -1.62921e-07, 0, 0, 0, 34.4599, 34.9107, 25.3595, 0 )
+transform = Transform( -2.89784e-06, -0.51616, 0, 1.9145, -9.05144e-09, 0, 0, 0, 17.7868, 18.2147, 2.15476, -0.0758179 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="Wall5"]
+transform = Transform( 43.448, -2.00965e-07, 0, -0.000238642, 0.941391, 0, 0, 0, 0.941391, 0, 2.02244, -0.000266514 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall5/StaticBody"]
 shape = SubResource( 3 )
 
 [node name="Wall3" type="MeshInstance" parent="."]
-transform = Transform( 9.14675e-13, 1.62921e-07, 34.4599, 34.4599, -1.62921e-07, 0, 5.61424e-06, 1, -5.61424e-06, -0.0138092, 25.3595, 33 )
+transform = Transform( 4.72118e-13, 8.40932e-08, 17.7868, 1.9145, -9.05144e-09, 0, 2.89784e-06, 0.51616, -2.89784e-06, 0.188054, 2.15476, 16.9574 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="Wall3"]
+transform = Transform( 43.448, -2.00965e-07, -1.86347e-20, -0.000238642, 0.941391, 1.81899e-12, 2.44284e-18, 0, 0.941391, 0, -1.94327, 0.000709595 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall3/StaticBody"]
 shape = SubResource( 3 )
 
 [node name="Wall4" type="MeshInstance" parent="."]
-transform = Transform( 9.14675e-13, 1.62921e-07, -34.4599, 34.4599, -1.62921e-07, 0, -5.61424e-06, -1, -5.61424e-06, 0.0346432, 25.3595, -33.3134 )
+transform = Transform( 4.72118e-13, 8.40932e-08, -17.7868, 1.9145, -9.05144e-09, 0, -2.89784e-06, -0.51616, -2.89784e-06, 0.213063, 2.15476, -17.2708 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="Wall4"]
+transform = Transform( 43.448, -2.00965e-07, 1.86347e-20, -0.000238642, 0.941391, -1.81899e-12, -2.44284e-18, 0, 0.941391, 0, -1.94327, -0.000627187 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall4/StaticBody"]
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-07, -0.984808, 0.173648, 0, 0.173648, 0.984808, -1, 1.60446e-07, -2.82909e-08, 0, 70.767, 0 )
-fov = 33.1
+transform = Transform( -1.62921e-07, -0.991794, 0.127843, 0, 0.127843, 0.991794, -1, 1.61584e-07, -2.08283e-08, 10.939, 81.097, 0 )
+fov = 28.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.107766, -0.417471, 0.902278, -0.0495098, 0.90869, 0.414524, -0.992943, 0, -0.118595, 63.5152, 50.6712, -0.000640869 )
 
 [node name="SpawnLocation" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5308, 14.8709, 0.00345612 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3902, 15.2235, 0.00345612 )
 
 [node name="SpawnLocation2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5308, 11.0282, 0.00345612 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3902, 11.3808, 0.00345612 )
 
 [node name="SpawnLocation3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.893, 15.6325, 2.06734 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7524, 15.9851, 2.06734 )
 
 [node name="SpawnLocation4" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8682, 11.852, -2.33058 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7276, 12.2046, -2.33058 )
 
 [node name="SpawnLocation5" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5001, 11.3914, 2.36739 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3595, 11.744, 2.36739 )
 
 [node name="SpawnLocation6" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2504, 14.8709, -1.62455 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1098, 15.2235, -1.62455 )
 
 [node name="DiceContainer" type="Spatial" parent="."]
 
 [node name="DiceSelectionRow" parent="." instance=ExtResource( 3 )]
-margin_right = -829.0
+margin_right = -606.0
 margin_bottom = -565.0
