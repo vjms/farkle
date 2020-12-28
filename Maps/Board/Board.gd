@@ -24,9 +24,9 @@ func children_of_type(parent, type, array):
 func _remove_dice():
 	restingDice.clear()
 	for child in diceContainer.get_children():
-		child.queue_free()
 		diceContainer.remove_child(child)
-
+		child.queue_free()
+		
 
 func throw_dice(count: int):
 	if _throw_in_progress:
@@ -58,7 +58,9 @@ func _input(event):
 
 func _on_dice_resting(dice):
 	if not dice.is_resting():
-		restingDice.remove(restingDice.find(dice))
+		var d = restingDice.find(dice)
+		if d != -1:
+			restingDice.remove(d)
 	else:
 		var index = restingDice.find(dice)
 		if index == -1:
@@ -77,4 +79,5 @@ func _on_dice_resting(dice):
 			for d in diceContainer.get_children():
 				hand.add_dice(d)
 			hand.get_score()
+			hand.queue_free()
 
