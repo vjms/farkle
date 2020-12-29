@@ -41,7 +41,7 @@ func throw(direction: Vector3):
 	apply_impulse(Vector3(0.0, -1, 0), direction * 1)
 
 
-func get_pointed_number():
+func get_pointed_number() -> int:
 	var t = get_global_transform().basis
 	var face1 = t.y
 	var face2 = t.x

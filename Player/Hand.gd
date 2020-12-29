@@ -38,12 +38,9 @@ func get_dice_count() -> int:
 
 
 func _calculate_score():
-	var numbers = Array()
+	var counts = [0, 0, 0, 0, 0, 0]
 	for d in _dice:
-		numbers.append(d.get_pointed_number())
-	numbers.sort()
-	var counts = [numbers.count(1), numbers.count(2), numbers.count(3), numbers.count(4), numbers.count(5), numbers.count(6)]
-	var temp = String(counts)
+		counts[d.get_pointed_number() - 1] += 1
 	_score = 0
 
 	# check multiple sames:
@@ -77,8 +74,6 @@ func _calculate_score():
 	_score += counts[0] * 100  # ones
 	_score += counts[4] * 50  # fives
 
-	#print(numbers, " ", temp, " ", counts, " ", _score)
-	print(numbers, " ", _score)
 	_calculated = true
 
 
