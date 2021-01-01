@@ -1,5 +1,6 @@
 extends RigidBody
 
+
 var gravity = Vector3(0.0, -98.1, 0.0)
 var rng = RandomNumberGenerator.new()
 

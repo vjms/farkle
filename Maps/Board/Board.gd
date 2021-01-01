@@ -16,9 +16,9 @@ func _ready():
 
 func children_of_type(parent, type, array):
 	for child in parent.get_children():
-		children_of_type(child, type, array)
 		if type in child.get_name():
 			array.append(child)
+		children_of_type(child, type, array)
 
 
 func _remove_dice():
