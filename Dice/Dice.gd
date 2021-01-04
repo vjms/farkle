@@ -14,11 +14,13 @@ func _ready():
 func _on_body_resting():
 	Events.emit_signal("dice_resting", self)
 
-func is_resting():
+func is_resting() -> bool:
 	return body.is_resting()
 
+func is_selected() -> bool:
+	return _is_selected
+
 func _on_selected():
-	Events.emit_signal("dice_selected", self)
 	if _can_be_selected:
 		_is_selected = !_is_selected
 		if _is_selected:
@@ -26,6 +28,7 @@ func _on_selected():
 			selection_indicator.show()
 		else:
 			selection_indicator.hide()
+		Events.emit_signal("dice_selected", self)
 
 func throw(direction: Vector3):
 	body.throw(direction)
@@ -35,5 +38,3 @@ func get_pointed_number() -> int:
 
 func set_can_be_selected(new_val: bool):
 	_can_be_selected = new_val
-	if !new_val:
-		selection_indicator.hide()

@@ -1,4 +1,4 @@
-extends Node
+extends Reference
 
 var _dice: Array
 var _score = 0
