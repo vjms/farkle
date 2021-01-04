@@ -74,6 +74,8 @@ func _on_dice_resting(dice):
 			restingDice.remove(index)
 		if _all_dice_resting: 
 			_throw_in_progress = false
+			for d in diceContainer.get_children():
+				d.set_can_be_selected(true)
 			Events.emit_signal("all_dice_resting", diceContainer.get_children())
 			var hand = load("res://Player/Hand.gd").new()
 			for d in diceContainer.get_children():

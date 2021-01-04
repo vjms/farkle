@@ -7,10 +7,13 @@ var rng = RandomNumberGenerator.new()
 var timer = Timer.new()
 var _resting = false setget _set_resting, is_resting
 
+signal selected
+signal resting
+
 
 func _set_resting(new_val):
 	_resting = new_val
-	Events.emit_signal("dice_resting", self)
+	emit_signal("resting")
 
 
 func is_resting():
@@ -22,7 +25,6 @@ func _ready():
 	add_child(timer)
 	rng.randomize()
 	set_mass(0.1)
-	throw(Vector3(-1, 0, 0))
 
 
 func throw(direction: Vector3):
@@ -77,10 +79,9 @@ func _physics_process(delta):
 
 func _on_physics_stop_timeout():
 	_set_resting(true)
-	#print(get_pointed_number())
 
 
 func _on_Dice_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_LEFT:
-			Events.emit_signal("dice_selected", self)
+			emit_signal("selected")
