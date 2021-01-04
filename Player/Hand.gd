@@ -62,13 +62,13 @@ func _calculate_score():
 				counts[index - 1] = 0
 
 	# check full straight:
-	_score += _partial_straight(counts, 1, 6, 1500)
+	_score += _straight(counts, 1, 6, 1500)
 
 	# check small straight:
-	_score += _partial_straight(counts, 1, 5, 750)
+	_score += _straight(counts, 1, 5, 750)
 
 	# check big straight
-	_score += _partial_straight(counts, 2, 6, 1000)
+	_score += _straight(counts, 2, 6, 1000)
 
 	# check singular:
 	_score += counts[0] * 100  # ones
@@ -77,7 +77,7 @@ func _calculate_score():
 	_calculated = true
 
 
-func _partial_straight(numbers, start, end, score):
+func _straight(numbers, start, end, score):
 	var returned_score = 0
 	if _sum(numbers) >= (end - start) + 1:
 		for n in range(start - 1, end):
